@@ -1,0 +1,15 @@
+<div>
+  <h2>Announcements</h2>
+  <br>
+  <md-content class="md-padding">
+    <md-divider></md-divider>
+    <md-list ng-repeat="a in articles">
+      <p class="pull-right text-muted">{{a.date}}</p>
+      <h3>{{a.title}}</h3>
+      <div ng-bind-html="a.content | limitTo:numLimit[$index]"></div>
+      <div layout="row" layout-align="center center"><md-button class="md-primary" ng-click="readMore($index)" ng-hide="numLimit[$index]===100000">read more</md-button></div>
+      <br>
+      <md-divider ng-if="!$last"></md-divider>
+    </md-list>
+  </md-content>
+</div>

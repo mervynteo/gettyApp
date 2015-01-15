@@ -1,0 +1,40 @@
+.pointer {
+  cursor:pointer;
+}
+
+/* Navbar */
+.dropdown-menu li a, .dropdown-menu li a:visited  {
+  color: #333;
+}
+
+/* Sidebar */
+.md-toolbar h3 a, .md-toolbar h3 a:hover, .md-toolbar h3 a:visited {
+	color:#fff; 
+	text-decoration:none;
+}
+.md-toolbar-tools .md-button {
+  color: #fff;
+}
+.md-toolbar-tools a, .md-toolbar-tools a:hover, .md-toolbar-tools a:visited {
+	color:#fff; 
+	text-decoration:none;
+}
+.sidebar-face {
+  border-radius:50%; 
+  height:80px; width:80px;
+}
+.face {
+  border-radius:50%; 
+  height:50px; width:50px;
+  margin-right: 30px;
+}
+.md-sidenav-left button {
+  text-align: left;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}

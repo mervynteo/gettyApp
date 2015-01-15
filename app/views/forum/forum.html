@@ -1,0 +1,47 @@
+<md-content class="md-padding">
+	<h3>Forums</h3>
+	<p>Welcome to the Ambitious Alignments discussion forums. Please read our forum <md-button class="md-primary" ng-click="showAlert($event)">Code of Conduct</md-button> before posting or starting a new thread.</p>
+	
+	<section layout="row" layout-sm="column" layout-align="center center">
+		<md-button ng-click="sortBy('updatedOn')" ng-class="{'md-primary': sort=='updatedOn'}">Activity Date</md-button>
+		<md-button ng-click="sortBy('updatedBy')" ng-class="{'md-primary': sort=='updatedBy'}">Last Activity By</md-button>
+		<md-button ng-click="sortBy('createdOn')" ng-class="{'md-primary': sort=='createdOn'}">Creation Date</md-button>
+		<md-button ng-click="sortBy('createdBy')" ng-class="{'md-primary': sort=='createdBy'}">Created By</md-button>
+	</section>
+	<md-card>
+		<md-content class="md-padding" style="height: 600px;">
+			<input type="text" name="query" class="form-control" placeholder="Search" ng-model="query">
+			<md-list>
+				<md-item ng-repeat="topic in topics | orderObjectBy:sort:acc | filter:query" ng-click="goToTopic(topic.key)" style="cursor: pointer">
+					<md-item-content>
+						<div class="md-tile-left">
+							<img ng-src="http://ambitiousalignments.com/dist/images/{{topic.updatedImage}}" class="face" alt="{{topic.updatedBy}}">
+						</div>
+						<div class="md-tile-content">
+							<h3>{{topic.title}}</h3>
+							<h4 class="text-muted"><small>Created by {{topic.createdBy}} <span class="text-muted" am-time-ago="topic.createdOn"></span></small></h4>
+							<p>{{topic.description}}</p>
+							<p class="text-muted" ng-show="topic.updatedBy"><small>{{topic.updatedBy}} commented <span class="text-muted" am-time-ago="topic.updatedOn"></span></small></p>
+						</div>
+					</md-item-content>
+					<md-divider md-inset ng-if="!$last"></md-divider>
+				</md-item>
+			</md-list>
+		</md-content>
+	</md-card>
+</md-content>
+
+<md-content class="md-padding">
+	<md-card>
+		<form name="newForum">
+			<h4>Create new Thread</h4>
+			<input type="text" class="form-control" ng-model="title" placeholder="Title" required>
+			<br>
+			<textarea name="description" class="form-control" placeholder="Description of Thread" ng-model="description" required></textarea>
+			<span class="alert alert-danger" ng-show="newForum.description.$error.required && newForum.description.$dirty">Please include a description of the forum</span>
+			<br>
+			<md-button class="md-raised md-primary pull-right" ng-click="newTopic()" ng-disabled="newForum.$invalid">Create</md-button>
+			<br><br>
+		</form>
+	</md-card>
+</md-content>

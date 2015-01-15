@@ -1,0 +1,39 @@
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('min-width: 600px')" flex>
+  <!-- <md-toolbar md-theme="grey" style="background-image: url('images/tiny_bg.jpg');"> -->
+  <md-toolbar md-theme="white">
+    <img src="images/connectingarthistories.png" style="width:280px; padding:20px">
+    <div class="md-toolbar-tools" layout="row" layout-align="end">
+      <a ng-click="closeLeft()" hide-md hide-lg hide-gt-lg><i class="fa fa-arrow-left pointer"></i></a>
+    </div>
+    <div class="md-toolbar-tools">
+      <img class="sidebar-face" ng-src="http://ambitiousalignments.com/dist/images/{{user.image}}" ng-show="user.image">
+      <i class="fa fa-user fa-3x" ng-show="!user.image"></i>
+    </div>
+    <div class="md-toolbar-tools" ng-hide="!user.lastname" style="padding:20px">{{user.firstname}} {{user.lastname}}</div>
+  </md-toolbar>
+  <md-content class="md-padding" ng-controller="LeftCtrl">
+
+  <h2>Overview</h2>
+    <md-button ng-click="start()" aria-label="Start Here" class="md-default" layout-fill>
+      <i class="fa fa-comments fa-fw" flex="15"></i><span> Start Here</span>
+    </md-button>
+    <br>
+    <md-button ng-click="main()" aria-label="Announcements" class="md-default" layout-fill>
+      <i class="fa fa-calendar fa-fw"></i><span> Announcements</span>
+    </md-button>
+    <br>
+    <h2>Communication</h2>
+
+    <md-button ng-click="readings()" aria-label="Readings" class="md-default" layout-fill>
+      <i class="fa fa-book fa-fw"></i><span> Readings</span>
+    </md-button>
+    <br>
+    <md-button ng-click="videos()" aria-label="Videos" class="md-default" layout-fill>
+      <i class="fa fa-video-camera fa-fw"></i><span> Videos</span>
+    </md-button>
+    <br>
+    <md-button ng-click="forum()" aria-label="Discussion Forum" class="md-default" layout-fill>
+      <i class="fa fa-comments fa-fw"></i><span> Discussion Forums</span>
+    </md-button>
+  </md-content>
+</md-sidenav>

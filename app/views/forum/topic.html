@@ -1,0 +1,46 @@
+<md-content class="md-padding" style="max-height: 600px;" ng-init="more=5; showUpload=0">
+	<h2>{{topicDetails.title}} <small class="text-muted">{{topicDetails.description}}</small></h2>
+	<p ng-show="!topic.messages">There are no comments in this forum yet.</p>
+	<md-list>
+		<md-item ng-repeat="(key, t) in topic.messages | orderObjectBy:updatedOn:true | limitObjectTo:more">
+			<md-item-content>
+				<div class="md-tile-left">
+					<img ng-src="http://ambitiousalignments.com/dist/images/{{t.image}}" class="face" alt="{{t.createdBy}}">
+				</div>
+				<div class="md-tile-content">
+					<h4 class="text-muted"><small>{{t.createdBy}} <span ng-show="t.file">shared</span><span ng-show="t.message">says</span></small></h4>
+					<p ng-show="t.message">{{t.message}}</p>
+					<p ng-show="t.file"><a href="http://ambitiousalignments.com/files/{{topicID}}/{{t.file}}" target="_blank"><i class="fa fa-file-o"></i> {{t.file}}</a></p>
+					<p><small><span class="text-muted" am-time-ago="t.createdOn"></span></small></p>
+				</div>
+			</md-item-content>
+			<md-divider md-inset ng-if="!$last"></md-divider>
+		</md-item>
+	</md-list>
+	<div ng-click="more=more+5" ng-hide="more>=size || !topic.messages" style="margin-top:-30px; background-color:rgba(253, 253, 253, 0.90); padding:10px; text-align:center; cursor:pointer">
+		<div>- read more -</div> 
+		<div><i class="fa fa-arrow-down"></i></div>
+	</div>
+</md-content>
+
+<md-content class="md-padding">
+	<div class="alert alert-{{uploadStatus}}" ng-show="uploadMsg"><i class="fa fa-exclamation-triangle" ng-show="uploadStatus==='danger'"></i><i class="fa fa-thumbs-o-up" ng-show="uploadStatus==='success'"></i> {{uploadMsg}}</div>
+	<form name="newMessage" ng-show="!showUpload" novalidate>
+		<md-button class="md-default" ng-click="showUpload=1"><i class="fa fa-cloud-upload"></i> Share File</md-button>
+		<textarea class="form-control" placeholder="Message" ng-model="msg" required></textarea>
+		<br>
+		<md-button class="md-raised md-primary pull-right" ng-click="newMsg()" ng-disabled="newMessage.$invalid">Send</md-button>
+		<br>
+	</form>
+	
+	<div ng-show="showUpload">
+		<md-progress-linear md-mode="determinate" ng-value="determinateValue" ng-show="uploading"></md-progress-linear>
+		<input name="file" type="file" class="form-control" ng-show="!uploading" file/>
+		<br>
+		<md-button class="md-default pull-left" ng-click="cancelUpload()">Cancel</md-button>
+		<md-button class="md-raised md-primary pull-right" ng-click="upload(); showUpload=0;">Upload</md-button>
+		<br>
+	</div>
+	<br>
+	<md-button class="md-defualt pull-left" href="#/forum">Back to Forums</md-button>
+</md-content>

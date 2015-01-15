@@ -1,0 +1,37 @@
+<md-dialog aria-label="Sign In">
+  <md-content layout="column" ng-init="resetPassword=0">
+    <md-header class="md-sticky-no-effect"><h3><i class="fa fa-user" hide-gt-md></i> Ambitious Alignments</h3></md-header>
+    <md-divider></md-divider>
+    <div layout="row" layout-margin>
+      <div flex="33" hide-sm hide-md><h1><i class="fa fa-user fa-5x"></i></h1></div>
+      <div layout="row" flex>
+        <form ng-show="resetPassword===0">
+          <p>Sign in with your email and password.</p>
+          <div class="alert alert-danger" ng-show="redirected"><i class="fa fa-exclamation-triangle"></i> Please sign in to access the application.</div>
+          <div>
+            <md-text-float label="Email" ng-model="username"></md-text-float>
+            <md-text-float label="Password" ng-model="password" type="password"></md-text-float>
+          </div>
+          <span class="alert alert-danger" ng-show="e.message"> {{e.message}} </span>
+          <br><br>
+          <small style="color:red">
+            <a ng-click="resetPassword=1" ng-hide="resetPassword===1" class="md-warn">Reset Password</a>
+          </small>
+        </form>
+        <form ng-show="resetPassword===1">
+          <p>Key in your email. A password reset email will be sent to your email account.</p>
+          <div>
+            <md-text-float label="Email" ng-model="username"></md-text-float>
+          </div>
+          <span class="alert alert-danger" ng-show="e.message"> {{e.message}} </span>
+        </form>
+      </div>
+    </div>
+  </md-content>
+  <div class="md-actions" layout="row">
+    <span flex></span>
+    <md-button ng-click="resetPassword=0" class="md-default" ng-show="resetPassword===1">Cancel</md-button>
+    <md-button ng-click="signIn(username, password)" class="md-primary" ng-show="resetPassword===0"><img src="images/tiny-loading.gif" height="15" ng-show="loginLoading"> Sign In</md-button>
+    <md-button ng-click="resetP(username)" class="md-primary" ng-show="resetPassword===1"><img src="images/tiny-loading.gif" height="15" ng-show="loginLoading"> Reset Password</md-button>
+  </div>
+</md-dialog>

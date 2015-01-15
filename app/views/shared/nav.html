@@ -1,0 +1,28 @@
+<div ng-controller="NavCtrl" layout="vertical" layout-fill>
+	<md-toolbar scroll-shrink style="background-color:#555">
+	    <div class="md-toolbar-tools">
+	    	<!-- <img ng-src="../images/yeoman.png" class="centered"> -->
+	    	<md-button ng-click="toggleLeft()" aria-label="toggle-left" hide-gt-md>
+				<md-tooltip>Menu</md-tooltip>
+				<i class="fa fa-align-justify"></i>
+			</md-button>
+			<a ng-href="#/main">Ambitious Alignments</a><span></span>
+			<span flex></span>
+			<md-button ng-click="toggleRight()" class="md-default" aria-label="toggle-right">
+	            <i class="fa fa-calendar fa-fw"></i> <span hide-sm>Latest</span>
+	        </md-button>
+			<!-- <md-button aria-label="sign-out" ng-show="signedIn" ng-click="signOut()"><i class="fa fa-user fa-fw"></i> <span hide-sm>Sign Out</span></md-button> -->
+			<div class="btn-group" ng-show="signedIn" dropdown>
+				<md-button class="dropdown-toggle" dropdown-toggle>
+					<i class="fa fa-user fa-fw"></i> <span hide-sm>{{user.firstname}} {{user.lastname}}</span> <span class="caret"></span>
+				</md-button>
+				<ul class="dropdown-menu pull-right" role="menu">
+					<li><a href="#/support">Contact Support</a></li>
+					<li><a href="#/change-password">Change Password</a></li>
+					<li class="divider"></li>
+					<li><a href aria-label="sign-out" ng-click="signOut()"> Sign Out</a></li>
+				</ul>
+			</div>
+	    </div>
+	</md-toolbar>
+</div>
