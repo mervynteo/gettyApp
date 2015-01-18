@@ -8,9 +8,9 @@
 		<md-button ng-click="sortBy('createdOn')" ng-class="{'md-primary': sort=='createdOn'}">Creation Date</md-button>
 		<md-button ng-click="sortBy('createdBy')" ng-class="{'md-primary': sort=='createdBy'}">Created By</md-button>
 	</section>
+	<input type="text" name="query" class="form-control" placeholder="Search" ng-model="query">
 	<md-card>
 		<md-content class="md-padding" style="height: 600px;">
-			<input type="text" name="query" class="form-control" placeholder="Search" ng-model="query">
 			<md-list>
 				<md-item ng-repeat="topic in topics | orderObjectBy:sort:acc | filter:query" ng-click="goToTopic(topic.key)" style="cursor: pointer">
 					<md-item-content>

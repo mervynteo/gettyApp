@@ -16,8 +16,7 @@ require.config({
     'angular-moment': '../../bower_components/angular-moment/angular-moment',
     moment: '../../bower_components/moment/moment',
     angularfire: '../../bower_components/angularfire/dist/angularfire',
-    firebase: '../../bower_components/firebase/firebase',
-    'aws-sdk-js': '../../bower_components/aws-sdk-js/dist/aws-sdk'
+    firebase: '../../bower_components/firebase/firebase'
   },
   shim: {
     angular: {

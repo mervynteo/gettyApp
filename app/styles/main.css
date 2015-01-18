@@ -38,3 +38,20 @@
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
+
+/* Contact Page */
+.letterbox {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-style: oblique;
+  text-align: left;
+  border: 1px solid #888;
+  border-radius: 5px;  
+  padding: 30px;
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(150, 150, 150, 0.75);
+  -moz-box-shadow:    2px 2px 2px 0px rgba(150, 150, 150, 0.75);
+  box-shadow:         2px 2px 2px 0px rgba(150, 150, 150, 0.75);
+}
+.subject {
+  font-weight: 700;
+  text-decoration: underline;
+}

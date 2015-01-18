@@ -11,8 +11,8 @@ define(['angular'], function (angular) {
   angular.module('gettyApp.controllers.ForumCtrl', [])
     .controller('ForumCtrl', function ($rootScope, $scope, $location, $mdDialog, ForumIndex, Auth) {
       if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
-
-      $scope.acc=false;
+      $scope.sort = 'updatedOn';
+      $scope.acc = true;
       $scope.topics = ForumIndex.all();
 
       function DialogController($scope, $mdDialog) {

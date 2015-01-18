@@ -41,16 +41,15 @@ define(['angular'], function (angular) {
         return ref.authWithPassword({
           email : username,
           password : password
-        }, function(error, authData) {
+        }, function(error) {
           if (error) {
-            console.log('Login Failed!', error);
-            $rootScope.$apply(function() { $rootScope.e = error; });
+            // console.log('Login Failed!', error);
+            $rootScope.$apply(function() { $rootScope.loginLoading = false; $rootScope.e = error; });
           } else {
             $rootScope.user = $firebaseAuth(ref).$getAuth();
             $rootScope.e = null;
-            console.log('Authenticated successfully with payload: ', authData);
+            $rootScope.loginLoading = false;
           }
-          $rootScope.loginLoading = false;
         });
       },
       getUser: function () {
@@ -60,9 +59,9 @@ define(['angular'], function (angular) {
         $rootScope.user = null;
         return ref.unauth();
       },
-      resetP: function (email) {console.log('reset');
+      resetP: function (email) {
         authObj.$sendPasswordResetEmail(email).then(function() {
-          console.log('Password reset email sent successfully!');
+          // console.log('Password reset email sent successfully!');
           $rootScope.loginLoading = false;
           return true;
         }).catch(function(error) {
@@ -74,7 +73,8 @@ define(['angular'], function (angular) {
       },
       changeP: function (email, oldP, newP) {
         authObj.$changePassword(email, oldP, newP).then(function() {
-          console.log('Password changed successfully!');
+          // console.log('Password changed successfully!');
+          $rootScope.changePassword = 'Password changed successfully.';
           $rootScope.loginLoading = false;
           return true;
         }).catch(function(error) {

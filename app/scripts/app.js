@@ -1,6 +1,6 @@
 /*jshint unused: vars */
-define(['angular', 'shared/nav', 'shared/sidenav', 'controllers/main', 'controllers/change-password', 'controllers/login', 'controllers/forum', 'controllers/topic', 'controllers/support', 'controllers/readings', 'controllers/videos', 'controllers/start','services/user', 'services/auth', 'services/forum', 'services/forumindex', 'filters/orderobjectby', 'filters/limitobjectto', 'directives/file']/*deps*/, 
-  function (angular, NavCtrl, SideNavCtrl, MainCtrl, ChangePasswordCtrl, UserService, AuthService, LoginCtrl, ForumCtrl, ForumService, StartCtrl, ReadingsCtrl, VideosCtrl, ForumIndexService, TopicCtrl, OrderObjectByFilter, LimitObjectToFilter, FileDirective, SupportCtrl)/*invoke*/ {
+define(['angular', 'shared/nav', 'shared/sidenav', 'controllers/main', 'controllers/change-password', 'controllers/login', 'controllers/forum', 'controllers/topic', 'controllers/support', 'controllers/readings', 'controllers/videos', 'controllers/start','services/user', 'services/auth', 'services/forum', 'services/forumindex', 'filters/orderobjectby', 'filters/limitobjectto', 'directives/file', 'services/email']/*deps*/, 
+  function (angular, NavCtrl, SideNavCtrl, MainCtrl, ChangePasswordCtrl, UserService, AuthService, LoginCtrl, ForumCtrl, ForumService, StartCtrl, ReadingsCtrl, VideosCtrl, ForumIndexService, TopicCtrl, OrderObjectByFilter, LimitObjectToFilter, FileDirective, SupportCtrl, EmailService)/*invoke*/ {
   'use strict';
 
   /**
@@ -30,7 +30,9 @@ define(['angular', 'shared/nav', 'shared/sidenav', 'controllers/main', 'controll
 'gettyApp.filters.LimitObjectTo',
 'gettyApp.directives.File',
 'gettyApp.controllers.SupportCtrl',
+'gettyApp.services.Email',
 /*angJSDeps*/
+    'gettyHTTP',
     'ngCookies',
     'ngResource',
     'ngSanitize',

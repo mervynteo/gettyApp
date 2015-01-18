@@ -12,7 +12,7 @@
             <md-text-float label="Email" ng-model="username"></md-text-float>
             <md-text-float label="Password" ng-model="password" type="password"></md-text-float>
           </div>
-          <span class="alert alert-danger" ng-show="e.message"> {{e.message}} </span>
+          <div class="alert alert-danger" ng-show="e.message"> {{e.message}} </div>
           <br><br>
           <small style="color:red">
             <a ng-click="resetPassword=1" ng-hide="resetPassword===1" class="md-warn">Reset Password</a>
@@ -23,7 +23,7 @@
           <div>
             <md-text-float label="Email" ng-model="username"></md-text-float>
           </div>
-          <span class="alert alert-danger" ng-show="e.message"> {{e.message}} </span>
+          <div class="alert alert-danger" ng-show="e.message"> {{e.message}} </div>
         </form>
       </div>
     </div>

@@ -19,13 +19,5 @@ define(['angular'], function (angular) {
     $scope.signOut = function () {
       Auth.signOut();
     };
-
-    $scope.showAdvanced = function(ev) {
-      $mdDialog.show({
-        controller: DialogController,
-        templateUrl: 'scripts/shared/navbar/login.tmpl.html',
-        targetEvent: ev,
-      });
-    };
   });
 });

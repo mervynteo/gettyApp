@@ -5,33 +5,33 @@
 
 <!-- START CONTACT BOX -->
 <div class="contact-box">
-  <div class="alert fade in {{messageType}} lead mobile" ng-show="message">
-    {{message}} <img src="{{loading}}" class="loading">
+  <div class="alert {{msgType}}" ng-show="msg">
+    {{msg}}
   </div>
   <!-- START CONTACT FORM -->
-  <form name="messageFrm" class="col-md-4 css-form" novalidate>    
+  <form name="messageFrm" class="col-md-4 css-form" novalidate>
     <div class="form-group">
       <label for="subject">Subject</label><br>
       <input type="text" name="subject" placeholder="Subject (required)" class="form-control" size="50" ng-model="contact.subject" required>
-      <span class="error" ng-show="!messageFrm.subject.$pristine && messageFrm.subject.$error.required"><br>Please enter the subject of your message.</span><br>
+      <div class="alert alert-danger" ng-show="!messageFrm.subject.$pristine && messageFrm.subject.$error.required">Please enter the subject of your message.</div><br>
     </div>
     <div class="form-group">              
       <label for="name">Name</label><br>
       <input type="text" name="name" placeholder="Name (required)" class="form-control" size="50" ng-model="contact.name" required>
-      <span class="error" ng-show="!messageFrm.name.$pristine && messageFrm.name.$error.required"><br>Please enter your name.</span><br>
+      <div class="alert alert-danger" ng-show="!messageFrm.name.$pristine && messageFrm.name.$error.required">Please enter your name.</div><br>
     </div>
     <div class="form-group">
       <label for="email">Email</label><br>
       <input type="email" name="email" placeholder="Email (required)" class="form-control" size="50" ng-model="contact.email" required>
-      <span class="error" ng-show="!messageFrm.email.$pristine && messageFrm.email.$error.email"><br>Please enter your email address so that we could get in touch.</span>
+      <div class="alert alert-danger" ng-show="!messageFrm.email.$pristine && messageFrm.email.$error.email">Please enter your email address so that we could get in touch.</div>
     </div>
     <div class="form-group">
       <label for="message">Message</label><br>
       <textarea name="message" class="form-control" cols="50" rows="4" placeholder="Your Message" ng-model="contact.message" required></textarea>
-      <span class="error" ng-show="!messageFrm.message.$pristine && messageFrm.message.$error.required"><br>Please enter the message that you wouldd like to send to us.</span><br>
+      <div class="alert alert-danger" ng-show="!messageFrm.message.$pristine && messageFrm.message.$error.required">Please enter the message that you wouldd like to send to us.</div><br>
     </div>
     <div class="form-group">
-      <button class="btn btn-primary" ng-disabled="messageFrm.$invalid" ng-click="sendEmail(contact);">Send Message</button>
+      <button class="btn btn-primary" ng-disabled="messageFrm.$invalid" ng-click="sendEmail(contact);"><img src="images/tiny-loading.gif" height="15" ng-show="sendEmailLoading"> Send Message</button>
     </div>
   </form>
   <div class="clear"></div>
@@ -41,12 +41,11 @@
   <div class="alert fade in {{messageType}}" ng-show="message">
     {{message}} <img src="{{loading}}" class="loading">
   </div>
-  <p>Dear Ruler Technology,</p>
-  <br />
+  <p>Dear App Support,</p>
   <div class="subject">{{contact.subject}}</div>
-  <br />
+  <br>
   <p>{{contact.message}}</p>
-  <br />
-  <br />
-  <p>{{contact.name}} <br /> {{contact.email}}</p>
+  <br>
+  <br>
+  <p>{{contact.name}} <br> {{contact.email}}</p>
 </div>
