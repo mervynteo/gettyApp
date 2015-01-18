@@ -11,6 +11,7 @@ define(['angular'], function (angular) {
   angular.module('gettyApp.controllers.ForumCtrl', [])
     .controller('ForumCtrl', function ($rootScope, $scope, $location, $mdDialog, ForumIndex, Auth) {
       if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
+      $rootScope.newThread = 'false';
       $scope.sort = 'updatedOn';
       $scope.acc = true;
       $scope.topics = ForumIndex.all();
@@ -36,6 +37,9 @@ define(['angular'], function (angular) {
 
       $scope.newTopic = function() {
         ForumIndex.create($scope.title, $scope.description);
+        $scope.title = '';
+        $scope.description = '';
+        $scope.newForum.$setPristine();
       };
 
       $scope.showAlert = function(ev) {

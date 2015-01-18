@@ -4,7 +4,6 @@
 	
 	<section layout="row" layout-sm="column" layout-align="center center">
 		<md-button ng-click="sortBy('updatedOn')" ng-class="{'md-primary': sort=='updatedOn'}">Activity Date</md-button>
-		<md-button ng-click="sortBy('updatedBy')" ng-class="{'md-primary': sort=='updatedBy'}">Last Activity By</md-button>
 		<md-button ng-click="sortBy('createdOn')" ng-class="{'md-primary': sort=='createdOn'}">Creation Date</md-button>
 		<md-button ng-click="sortBy('createdBy')" ng-class="{'md-primary': sort=='createdBy'}">Created By</md-button>
 	</section>
@@ -40,6 +39,8 @@
 			<textarea name="description" class="form-control" placeholder="Description of Thread" ng-model="description" required></textarea>
 			<span class="alert alert-danger" ng-show="newForum.description.$error.required && newForum.description.$dirty">Please include a description of the forum</span>
 			<br>
+			<div class="alert alert-success" ng-show="newThread==='success'">New thread created.</div>
+			<div class="alert alert-danger" ng-show="newThread==='danger'">Error in creating new thread, please contact support.</div>
 			<md-button class="md-raised md-primary pull-right" ng-click="newTopic()" ng-disabled="newForum.$invalid">Create</md-button>
 			<br><br>
 		</form>

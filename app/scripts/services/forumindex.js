@@ -47,8 +47,9 @@ define(['angular'], function (angular) {
         }).then(function(ref) {
           var key = ref.key();
           sync.$update(key, { key: key });
-        }, function(error) {
-          console.log('Error:', error);
+          $rootScope.newThread = 'success';
+        }, function() {
+          $rootScope.newThread = 'danger';
         });
       },
       newUpdate: function (topicID, createdBy, createdOn, image) {
