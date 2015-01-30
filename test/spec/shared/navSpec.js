@@ -7,43 +7,59 @@ define(['angular', 'angular-mocks', 'app'], function(angular, mocks, app) {
     // load the controller's module
     beforeEach(module('gettyApp.controllers.NavCtrl'));
 
-    var NavCtrl, 
-      // mdSidenav, 
-      scope;
+    var NavCtrl, mdSidenav, scope, isToggleCalled, sidenavTarget, signedIn;
+    var mockAuth = {};
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope) {
+    beforeEach(inject(function ($controller, $rootScope, $q) {
       scope = $rootScope.$new();
-      NavCtrl = $controller('NavCtrl', {
-        $scope: scope
-      });
+      mdSidenav = function (def) {
+        sidenavTarget = def;
+        var f = {
+          toggle: function () {
+            isToggleCalled = true;
+            var deferred = $q.defer();
+            deferred.resolve();
+            return deferred.promise;
+          }
+        };
 
-      // mdSidenav = $mdSidenav;
+        return f;
+      };
+      mockAuth = {
+        signOut: function() {
+          // user signs out succesfully
+          signedIn = false;
+        }
+      };
+      NavCtrl = $controller('NavCtrl', {
+        $scope: scope,
+        Auth: mockAuth,
+        $mdSidenav: mdSidenav
+      });
     }));
 
-    // beforeEach(function() {
-    //   var Usermock = { promise: {then: function () {return;}} };
+    it('should invoke $mdSidenav.toggle when closeLeft is invoked', function () {
+      isToggleCalled = false;
+      sidenavTarget = '';
+      scope.toggleLeft();
+      expect(isToggleCalled).toBeTruthy();
+      expect(sidenavTarget).toBe('left');
+    });
 
-    //   module(function($provide) {
-    //     $provide.value('User', Usermock);
-    //   });
-    // });
+    it('should invoke $mdSidenav.toggle when toggleRight is invoked', function () {
+      isToggleCalled = false;
+      sidenavTarget = '';
+      scope.toggleRight();
+      expect(isToggleCalled).toBeTruthy();
+      expect(sidenavTarget).toBe('right');
+    });
 
-    // beforeEach(function() {
-    //   $window = { location: {reload: jasmine.createSpy()} };
-
-    //   module(function($provide) {
-    //     $provide.value('$window', $window);
-    //   });
-    // });
-
-    // it('should attach a list of awesomeThings to the scope', function () {
-    //   expect(scope.awesomeThings.length).toBe(3);
-    // });
-
-    // it('should be able to toggle sideNav', function () {
-    //   element(by.css('md-button[ng-click="toggleLeft()"]')).click();
-    //   expect(element(by.css('.md-sidenav.md-closed')).getCssValue('display').toEqual('block'));
-    // });
+    it('should invokde Auth.signOut when signOut is invoked', function () {
+      signedIn = true;
+      // invoke sign out function
+      scope.signOut();
+      expect(signedIn).toBeFalsy();
+    });
   });
 });

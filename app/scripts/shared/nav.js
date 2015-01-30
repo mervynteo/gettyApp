@@ -8,7 +8,7 @@ define(['angular'], function (angular) {
    * # NavCtrl
    * Controller of the gettyApp
    */
-   angular.module('gettyApp.controllers.NavCtrl', []).controller('NavCtrl', function ($rootScope, $scope, $mdSidenav, $mdDialog, Auth) {
+   angular.module('gettyApp.controllers.NavCtrl', []).controller('NavCtrl', function ($rootScope, $scope, $mdSidenav, Auth) {
     $rootScope.toggleLeft = function() {
       $mdSidenav('left').toggle();
     };

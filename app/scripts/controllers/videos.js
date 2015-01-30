@@ -10,7 +10,7 @@ define(['angular'], function (angular) {
    */
   angular.module('gettyApp.controllers.VideosCtrl', [])
     .controller('VideosCtrl', function ($scope, $location, Auth) {
-      if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
       $scope.awesomeThings = [
         'HTML5 Boilerplate',
         'AngularJS',

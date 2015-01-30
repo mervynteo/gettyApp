@@ -75,11 +75,13 @@ define(['angular'], function (angular) {
         authObj.$changePassword(email, oldP, newP).then(function() {
           // console.log('Password changed successfully!');
           $rootScope.changePassword = 'Password changed successfully.';
+          $rootScope.e = '';
           $rootScope.loginLoading = false;
           return true;
         }).catch(function(error) {
-          console.error('Error: ', error);
+          // console.error('Error: ', error);
           $rootScope.e = error;
+          $rootScope.changePassword = '';
           $rootScope.loginLoading = false;
           return false;
         });

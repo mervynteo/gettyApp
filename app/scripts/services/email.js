@@ -9,7 +9,7 @@ define(['angular'], function (angular) {
    * Service in the gettyApp.
    */
   angular.module('gettyApp.services.Email', [])
-	.service('Email', function ($resource) {
+	.factory('Email', function ($resource) {
 	// AngularJS will instantiate a singleton by calling "new" on this function
     return $resource('http://loveactionproject.com/rulerMail/sendmail.php', {}, {
       save: {method:'POST', isArray: false}

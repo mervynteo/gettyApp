@@ -10,11 +10,7 @@ define(['angular'], function (angular) {
    */
   angular.module('gettyApp.controllers.StartCtrl', [])
     .controller('StartCtrl', function ($scope, $location, Auth) {
-      if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
-      $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
+      
     });
 });

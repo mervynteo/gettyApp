@@ -9,8 +9,8 @@ define(['angular'], function (angular) {
    * Controller of the gettyApp
    */
   angular.module('gettyApp.controllers.MainCtrl', [])
-    .controller('MainCtrl', function ($rootScope, $scope, $location) {
-      if(!$rootScope.user) { $location.path('/login').search({r: '1'}); }
+    .controller('MainCtrl', function ($rootScope, $scope, $location, Auth) {
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
 
       $scope.numLimit=[];
       $scope.articles = [{

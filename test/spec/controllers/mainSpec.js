@@ -7,19 +7,37 @@ define(['angular', 'angular-mocks', 'app'], function(angular, mocks, app) {
     // load the controller's module
     beforeEach(module('gettyApp.controllers.MainCtrl'));
 
-    var MainCtrl,
-      scope;
+    var MainCtrl, scope;
+    var mockAuth = {};
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope) {
-      scope = $rootScope.$new();
-      MainCtrl = $controller('MainCtrl', {
-        $scope: scope
+    beforeEach(function() {
+      module('gettyApp.controllers.LoginCtrl', function($provide) {
+        $provide.value('Auth', mockAuth);
       });
-    }));
 
-    it('should attach a list of awesomeThings to the scope', function () {
-      // expect(scope.awesomeThings.length).toBe(0);
+      inject(function ($controller, $rootScope, $q) {
+        scope = $rootScope.$new();
+        mockAuth = {
+          signedIn: false,
+          getUser: function() {
+            // user signed in
+            var defer = $q.defer();
+            defer.resolve(this.signedIn);
+            return defer.promise;
+          }
+        };
+        MainCtrl = $controller('MainCtrl', {
+          $scope: scope,
+          Auth: mockAuth
+        });
+      });
+    });
+
+    it('should contain the same number of items in articles and numLimit', function () {
+      expect(scope.numLimit.length===scope.articles.length).toBeTruthy();
+      scope.readMore(0);
+      expect(scope.numLimit[0]).toBe(100000);
     });
   });
 });

@@ -10,8 +10,8 @@ define(['angular'], function (angular) {
    */
   angular.module('gettyApp.controllers.ForumCtrl', [])
     .controller('ForumCtrl', function ($rootScope, $scope, $location, $mdDialog, ForumIndex, Auth) {
-      if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
-      $rootScope.newThread = 'false';
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
+      $rootScope.newThread = '';
       $scope.sort = 'updatedOn';
       $scope.acc = true;
       $scope.topics = ForumIndex.all();
@@ -21,6 +21,14 @@ define(['angular'], function (angular) {
           $mdDialog.cancel();
         };
       }
+
+      $scope.showAlert = function(ev) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: 'views/forum/codeOfConduct.tmpl.html',
+          targetEvent: ev,
+        });
+      };
 
       $scope.goToTopic = function(topicID) {
         $location.path('/topic/' + topicID);
@@ -40,14 +48,6 @@ define(['angular'], function (angular) {
         $scope.title = '';
         $scope.description = '';
         $scope.newForum.$setPristine();
-      };
-
-      $scope.showAlert = function(ev) {
-        $mdDialog.show({
-          controller: DialogController,
-          templateUrl: 'views/forum/codeOfConduct.tmpl.html',
-          targetEvent: ev,
-        });
       };
     });
 });

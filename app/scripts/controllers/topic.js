@@ -12,7 +12,7 @@ define(['angular'], function (angular) {
    */
   angular.module('gettyApp.controllers.TopicCtrl', [])
     .controller('TopicCtrl', function ($scope, $routeParams, $location, Auth, ForumIndex, Forum) {
-      if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
       
       var topicID = $scope.topicID = $routeParams.topicID;
 
@@ -53,7 +53,6 @@ define(['angular'], function (angular) {
           bucket.putObject(params, function(err) {
             if(err) {
               // There Was An Error With Your S3 Config
-              // alert(err.message);
               $scope.uploadMsg = err.message;
               $scope.uploadStatus = 'danger';
               $scope.uploading = 0;

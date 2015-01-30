@@ -7,19 +7,37 @@ define(['angular', 'angular-mocks', 'app'], function(angular, mocks, app) {
     // load the controller's module
     beforeEach(module('gettyApp.controllers.ReadingsCtrl'));
 
-    var ReadingsCtrl,
-      scope;
+    var ReadingsCtrl, scope;
+    var mockAuth = {};
 
     // Initialize the controller and a mock scope
-    beforeEach(inject(function ($controller, $rootScope) {
-      scope = $rootScope.$new();
-      ReadingsCtrl = $controller('ReadingsCtrl', {
-        $scope: scope
+    beforeEach(function() {
+      module('gettyApp.controllers.ReadingsCtrl', function($provide) {
+        $provide.value('Auth', mockAuth);
       });
-    }));
 
-    // it('should attach a list of awesomeThings to the scope', function () {
-    //   expect(scope.awesomeThings.length).toBe(3);
-    // });
+      inject(function ($controller, $rootScope, $q) {
+        scope = $rootScope.$new();
+        mockAuth = {
+          signedIn: false,
+          getUser: function() {
+            // user signed in
+            var defer = $q.defer();
+            defer.resolve(this.signedIn);
+            return defer.promise;
+          }
+        };
+        ReadingsCtrl = $controller('ReadingsCtrl', {
+          $scope: scope,
+          Auth: mockAuth
+        });
+      });
+    });
+
+    it('should check if the user is signed in', function () {
+      spyOn(mockAuth, 'getUser');
+      mockAuth.getUser();
+      expect(mockAuth.getUser).toHaveBeenCalled();
+    });
   });
 });

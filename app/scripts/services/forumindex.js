@@ -15,12 +15,12 @@ define(['angular'], function (angular) {
     var ref = new Firebase(FIREBASE_URL);
     var sync = $firebase(ref.child('forumIndex'));
     var forumIndex = sync.$asObject();
-    // var forumIndex = sync.$asArray();
 
     var ForumIndex = {
       all: function () {
         forumIndex.$loaded().then(function() {
-          
+          // return forumIndex;
+          // return sync;
         });
 
         return forumIndex;

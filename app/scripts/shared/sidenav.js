@@ -9,12 +9,8 @@ define(['angular'], function (angular) {
    * Controller of the gettyApp
    */
   angular.module('gettyApp.controllers.SideNavCtrl', [])
-   .controller('SideNavCtrl', function ($rootScope, $timeout, $scope) {
-    $scope.awesomeThings = [
-    'HTML5 Boilerplate',
-    'AngularJS',
-    'Karma'
-    ];
+   .controller('SideNavCtrl', function () {
+    
   }).controller('LeftCtrl', function ($rootScope, $timeout, $location, $mdSidenav) {
     $rootScope.closeLeft = function() {
       $mdSidenav('left').close();
@@ -39,7 +35,7 @@ define(['angular'], function (angular) {
       $mdSidenav('left').close();
       $location.path('forum');
     };
-  }).controller('RightCtrl', function ($rootScope, $timeout, $mdSidenav) {
+  }).controller('RightCtrl', function ($rootScope, $mdSidenav) {
     $rootScope.closeRight = function() {
       $mdSidenav('right').close();
     };

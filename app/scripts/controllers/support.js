@@ -10,7 +10,7 @@ define(['angular'], function (angular) {
    */
   angular.module('gettyApp.controllers.SupportCtrl', [])
     .controller('SupportCtrl', function ($rootScope, $scope, $location, Auth, Email) {
-      if(!Auth.getUser()) { $location.path('/login?r=1').search({r: '1'}); }
+      if(!Auth.getUser()) { $location.path('/login').search({r: '1'}); }
       $scope.sendEmailLoading = false;
       $scope.contact = {};
 
